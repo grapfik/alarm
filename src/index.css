@@ -2,8 +2,30 @@ body {
   padding: 0;
   margin: 0;
   height: 100vh;
+  background-color: #100e14;
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-flow: column;
+  gap: 20px;
 }
 
+#video {
+  border-radius: 10px;
+}
+
+.time {
+  text-align: center;
+  color: white;
+  font-family: 'Lucida Sans';
+  font-size: 15px;
+  background-color: #393543;
+  border: none;
+  height: 35px;
+  width: 450px;
+  border-radius: 5px;
+}
+
+.time:focus {
+  outline: none;
+}

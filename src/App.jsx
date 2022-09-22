@@ -2,14 +2,22 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import './App.css'
 
+const vid = 'assets/videoplayback.mp4'
+
 function App() {
   
   
   const [timerText, setTimerText] = useState("")
   
   function playAlarmSound() {
-    const alarm = new Audio('./alarm.mp3')
-    alarm.play()
+    let vid = document.getElementById('video')
+
+    vid.addEventListener('ended', () => {
+      vid.pause()
+      vid.currentTime = 0
+    })
+
+    vid.play()
   }
   
   function handleChange(event) {
@@ -42,13 +50,14 @@ function App() {
   }
   
   return(
+    <div>
     <form onSubmit={handleSubmit}>
-      <input
+      <input className='time'
         type = "text"
-        placeholder="time"
         onChange={handleChange}
         />
     </form>
+    </div>
   )
 }
 
