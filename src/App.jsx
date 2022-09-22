@@ -4,11 +4,11 @@ import './App.css'
 
 function App() {
   
-  const alarm = new Audio('../public/alarm.mp3')
   
   const [timerText, setTimerText] = useState("")
-
+  
   function playAlarmSound() {
+    const alarm = new Audio('./alarm.mp3')
     alarm.play()
   }
   
