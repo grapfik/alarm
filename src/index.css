@@ -5,9 +5,9 @@ body {
   background-color: #100e14;
   display: flex;
   align-items: center;
-  justify-content: center;
   flex-flow: column;
   gap: 20px;
+  padding-top: 40px;
 }
 
 #video {
@@ -15,18 +15,37 @@ body {
   width: 75vmin;
 }
 
+form {
+  display: flex;
+  justify-content: space-between;
+  font-size: 16px;
+  width: 75vmin;
+}
+
 .time {
+  background-color: #393543;
   text-align: center;
   color: white;
-  font-family: 'Lucida Sans';
-  font-size: 16px;
-  background-color: #393543;
   border: none;
-  height: 35px;
-  width: 75vmin;
-  border-radius: 5px;
+  height: 31px;
+  width: 63vmin;
+  border-radius: 7px;
+}
+
+.submit{
+  width: 10vmin;
+  background-color: #3c1a98;
+  border-radius: 7px;
+  border: none;
+  color: white;
 }
 
 .time:focus {
   outline: none;
+}
+
+.timer {
+  margin-top: 20px;
+  color: white;
+  font-family: 'Montserrat', sans-serif;
 }

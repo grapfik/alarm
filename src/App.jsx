@@ -1,13 +1,14 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import reactLogo from './assets/react.svg'
 import './App.css'
+import { render } from 'react-dom'
 
 const vid = 'assets/videoplayback.mp4'
 
 function App() {
   
-  
   const [timerText, setTimerText] = useState("")
+  const [timers, setTimers] = useState([])
   
   function playAlarmSound() {
     let vid = document.getElementById('video')
@@ -19,6 +20,29 @@ function App() {
 
     vid.play()
   }
+
+  useEffect(() => {
+    let interval = setInterval(() => {
+      
+      let newTimers = []
+
+      for(let i = 0; i < timers.length; i++) {
+        newTimers.push(timers[i] - 1)
+      }
+
+      setTimers(newTimers);
+
+    }, 1000)
+
+    return () => clearInterval(interval)
+  }, [timers])
+
+  function addTimer(time) {
+    setTimers(prev => [
+      time,
+      ...prev
+    ])
+  }
   
   function handleChange(event) {
     setTimerText(event.target.value)
@@ -27,8 +51,9 @@ function App() {
   function handleSubmit(event) {
     event.preventDefault()
 
+    let time = 0
+
     function calculateTime() {
-      let time = 0
       let parsed = timerText.split(':')
       let multiplier = 1
 
@@ -40,16 +65,26 @@ function App() {
     }
 
     setTimeout(playAlarmSound, calculateTime())
+
+    addTimer([time])
   }
+
+  const renderTimers = timers.map(timer => (
+    <div className='timer'>{ timer }</div>
+  ))
   
   return(
-    <div>
+    <div className='container'>
     <form onSubmit={handleSubmit}>
       <input className='time'
         type = "text"
         onChange={handleChange}
         />
+      <input className='submit'
+        type='submit'
+        />
     </form>
+    {renderTimers} 
     </div>
   )
 }
